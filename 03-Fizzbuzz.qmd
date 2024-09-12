@@ -8,7 +8,7 @@ Instructions:
 
 -   You can answer the questions below in either R or Python. I will give you 50% extra credit if you provide answers in both languages. Otherwise, please feel free to delete the code chunks corresponding to the language you don't wish to work in.
 
--   Once you have finished this assignment, render the document (Ctrl/Cmd-Shift-K or the Render button).
+-   Once youhave finished this assignment, render the document (Ctrl/Cmd-Shift-K or the Render button).
 
 -   Commit the qmd file and any other files you have changed to the repository and push your changes.
 
@@ -59,7 +59,7 @@ Start by filling in the following table for the numbers 1:30 manually, to get a 
 
 On paper or using a tool such as <https://excalidraw.com>, create a program flow map for the sequence of if-statements you need to evaluate for fizzbuzz. Add the picture to the folder containing this file, and name the picture flowchart.png. Add the picture to Git and commit/push your changes.
 
-![Program Flow map for FizzBuzz](C:/Users/Xeng/Documents/01-github-intro-xengyang123/Week3/flowchart-1.jpg)
+![Program Flow map for FizzBuzz](flowchart-1.png)
 
 In the chunk below, write code which will solve this problem for a single value `x`. You should be able to change the value of x at the top of the chunk and still get the correct answer.
 
