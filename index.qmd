@@ -1,0 +1,226 @@
+---
+title: "Homework: Fizzbuzz"
+author: "Your Name"
+format: html
+---
+
+Instructions: 
+
+- You can answer the questions below in either R or Python. I will give you 50% extra credit if you provide answers in both languages. Otherwise, please feel free to delete the code chunks corresponding to the language you don't wish to work in.
+
+- Once you have finished this assignment, render the document (Ctrl/Cmd-Shift-K or the Render button). 
+- Commit the qmd file and any other files you have changed to the repository and push your changes.
+- In Canvas, submit a link to your github repository containing the updated files.
+
+# Introduction to Fizzbuzz
+
+The "FizzBuzz Test" is a famous programming interview question.
+
+> Write a program that prints the numbers from 1 to 30. But for multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz"
+
+Start by filling in the following table for the numbers 1:30 manually, to get a feel for the task.
+
+| Input | Output |
+|-------|--------|
+| 1     |        |
+| 2     |        |
+| 3     |        |
+| 4     |        |
+| 5     |        |
+| 6     |        |
+| 7     |        |
+| 8     |        |
+| 9     |        |
+| 10    |        |
+| 11    |        |
+| 12    |        |
+| 13    |        |
+| 14    |        |
+| 15    |        |
+| 16    |        |
+| 17    |        |
+| 18    |        |
+| 19    |        |
+| 20    |        |
+| 21    |        |
+| 22    |        |
+| 23    |        |
+| 24    |        |
+| 25    |        |
+| 26    |        |
+| 27    |        |
+| 28    |        |
+| 29    |        |
+| 30    |        |
+
+: Fizzbuzz for 1:30
+
+On paper or using a tool such as [https://excalidraw.com](https://excalidraw.com), create a program flow map for the sequence of if-statements you need to evaluate for fizzbuzz. Add the picture to the folder containing this file, and name the picture flowchart.png. Add the picture to Git and commit/push your changes. 
+
+![Program Flow map for FizzBuzz](flowchart.png)
+
+In the chunk below, write code which will solve this problem for a single value `x`. You should be able to change the value of x at the top of the chunk and still get the correct answer.
+
+```{r solo-fizzbuzz-r, echo = T}
+x <- 3
+
+# FizzBuzz code goes here
+
+```
+
+
+```{python solo-fizzbuzz-py, echo = T}
+x = 3
+
+# FizzBuzz code goes here
+
+```
+
+Modify the code above so that the result is stored in a value `y`.
+
+```{r solo-fizzbuzz-stored-r, echo = T}
+x <- 3
+y <- NA
+# FizzBuzz code goes here
+
+
+
+print(paste("For x = ", x, " my code produces ", y, sep = ""))
+```
+
+
+```{python solo-fizzbuzz-stored-py, echo = T}
+import numpy as np
+x = 3
+y = np.nan
+# FizzBuzz code goes here
+
+
+
+print("For x = "+ str(x)+ " my code produces "+ str(y))
+```
+
+
+# A vector of FizzBuzz
+
+The code in the previous problem only solves FizzBuzz for a single value of `x`. Extend your code using a loop so that it will work for all values in a vector `xx`, storing values in a corresponding vector `yy`.
+
+You can copy/paste code from previous chunks to make this chunk easier.
+
+```{r vector-fizzbuzz-r, echo = T}
+xx <- 1:30
+yy <- rep(NA, times = 30)
+
+# FizzBuzz code goes here
+
+
+# Printing the results in a data frame
+res <- cbind(x = xx, result = yy)
+res
+```
+
+```{python vector-fizzbuzz-py, echo = T}
+import pandas as pd
+xx = np.array(range(30)) + 1
+yy = [np.nan]*30
+
+# FizzBuzz code goes here
+
+
+# Printing the results in a data frame
+res = pd.DataFrame({"x": xx, "result": yy})
+res
+```
+
+# Functions and FizzBuzz
+
+In the previous question, you extended your fizzbuzz code to iterate through a vector `xx` and produce a result `yy`. Can you generalize this, writing a function `fizzbuzz` that takes a variable `x` and returns a corresponding fizzbuzzified variable? Your function should be able to handle `x` that is a vector or a scalar value, and should store your solution in `yy`.
+
+```{r function-fizzbuzz-r}
+xx <- sample(1:100, 10) # get a random xx
+yy <- rep(NA, 10)
+
+fizzbuzz <- function(x) {
+  # Your code goes here
+}
+
+yy <- fizzbuzz(x = xx)
+
+# Printing the results in a data frame
+res <- cbind(x = xx, result = yy)
+res
+```
+
+```{python function-fizzbuzz-py}
+import pandas as pd
+from random import choices
+xx = np.array(choices(range(100), k = 10)) + 1
+
+
+def fizzbuzz(x):
+  y = [np.nan]*len(x) # this just defines something to return
+  # Your code goes here
+  return y
+
+yy = fizzbuzz(x = xx)
+
+# Printing the results in a data frame
+res = pd.DataFrame({"x": xx, "result": yy})
+res
+```
+
+# Defensive Programming
+
+You cannot always assume that the person using your functions knows what they're doing. Add a check to the function you wrote in the last question so that it will handle non-numeric input by issuing an error message.
+
+In R, you can use the function [`stopifnot()` to halt function execution if there is an error](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/stopifnot); this will give you a basic error message. 
+
+```{r stopifnotdemo, error = T}
+stopifnot(2 > 3)
+```
+
+In Python, you can use a [`try:` statement with a `except:` clause](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). This functions like an if-else statement, where if no error occurs, the except statement is never executed.
+
+```{python tryexceptdemo, error = T}
+try: 
+  int("hello")
+except ValueError: 
+  print("Error: could not turn value into an integer")
+
+```
+
+See more examples of this in the [Input Validation](https://srvanderplas.github.io/stat-computing-r-python/part-gen-prog/05-functions.html#input-validation) section of the textbook.
+
+
+```{r function-error-fizzbuzz-r}
+xx <- sample(1:100, 10) # get a random xx
+yy <- rep(NA, 10)
+
+fizzbuzz <- function(x) {
+  # Your code goes here
+}
+
+yy <- fizzbuzz(x = xx)
+
+# Printing the results in a data frame
+res <- cbind(x = xx, result = yy)
+res
+```
+
+```{python function-error-fizzbuzz-py}
+import pandas as pd
+from random import choices
+xx = np.array(choices(range(100), k = 10)) + 1
+
+
+def fizzbuzz(x):
+  y = [np.nan]*len(x) # this just defines something to return
+  # Your code goes here
+  return y
+
+yy = fizzbuzz(x = xx)
+
+# Printing the results in a data frame
+res = pd.DataFrame({"x": xx, "result": yy})
+res
+```
